@@ -2,7 +2,7 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   m<-NULL
-  set<-function(y){
+  set<-function(y){ ##"<<-" is superassignment operator
     x<<-y
     m<<-null
   }
@@ -14,14 +14,14 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## calculate inverse of matrix object created above and cache it, or return cached value if inverse already calculated/cached
 
-cachesolve <- function(x,...){
+cachesolve <- function(x, ...){
   m<-x$getinverse()
   if(!is.null(m)){
-    message("getting cached data")
+    message("getting cached data") #return this message above retrieved cached results if cached inverse already exists
     return(m)
   }
   matrix<-x$get()
-  m<-solve(matrix,...)
+  m<-solve(matrix, ...)
   x$setinverse(m)
   m
 }
